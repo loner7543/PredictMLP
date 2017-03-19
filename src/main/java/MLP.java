@@ -49,7 +49,7 @@ public class MLP {
             for (int i = 0; i < output.length; i++) {
                 lError[i] = (answer[i] - output[i]) * ActivationFunction.getDerivativeBySigmFunction(output[i]);
                 gError += Math.abs(lError[i]);
-                System.out.println("Ошибка  "+error);
+                System.out.println("Ошибка  "+gError);
             }
 
             for (int i = 0; i < hidden.length; i++) {

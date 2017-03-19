@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         double[] patterns = new double[]{0.1,0.2,0.3};
         double[] answer = new double[]{0.5,0.5,0.5};
-        double[] sampling = new double[100];
+        double[][] sampling = new double[2][7];
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ввеите число входных нейронов");
         int inputCount = Integer.parseInt(bufferedReader.readLine());
@@ -23,14 +23,32 @@ public class Main {
         MLP mlp = new MLP(inputCount,hiddenNeurCount,outputCount,activationFunction,LEARMING_COEF,ERROR);
         FileReader br = new FileReader("D:\\10Semestr\\IIS\\predict\\src\\main\\resources\\input.txt");
         BufferedReader input = new BufferedReader(br);
-        while(input.readLine()!=null){
-            double a = Double.parseDouble(input.readLine());
-            System.out.print(a);
+        String str = "";
+        boolean out=true;
+        int i = 0;
+        do{
+            String read = input.readLine();
+            if (read==null){
+                out = false;
+            }
+            else {
+                System.out.println(read);
+                double[] item = parse(read);
+                sampling[i] = item;
+                i++;
+            }
         }
-        mlp.learn(patterns,answer,10);
-//        Fann fann = new Fann( "/path/to/file" );
-//        float[] inputs = new float[]{ -1, 1 };
-//        float[] outputs = fann.run( inputs );
+        while (out);
+        mlp.learn(sampling[0],answer,100);// учить предъявляя каждый набор по отдельности?
 
+    }
+
+    public static double[] parse(String s){
+        String[] digs = s.split(",");
+        double[] res = new double[digs.length];
+        for (int i = 0;i<digs.length;i++){
+            res[i] = Double.valueOf(digs[i]);
+        }
+        return res;// TODO дописать парсер и выделять результат классификации в отдельную переменную
     }
 }
