@@ -34,23 +34,22 @@ public class MLP {
         int count = 0;
         double[] error = new double[hidden.length];
         for (int i = 0; i < input.length; i++) {
-            input[i] = pattern[i];
+            input[i] = pattern[i];//подать на вход значения
         }
         double gError = 0;
         do {
             count++;
             gError = 0;
-            // подаются на вход значения
-
             // считает значение на выходе
             countOuter(input, true);
 
             // считается ошибка - разница между полученным на выходе и
             // ожидаемым
-            double[] lError = new double[output.length];
+            double[] lError = new double[output.length];//массив ошибок
             for (int i = 0; i < output.length; i++) {
                 lError[i] = (answer[i] - output[i]) * ActivationFunction.getDerivativeBySigmFunction(output[i]);
                 gError += Math.abs(lError[i]);
+                System.out.println("Ошибка  "+error);
             }
 
             for (int i = 0; i < hidden.length; i++) {
