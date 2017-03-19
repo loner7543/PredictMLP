@@ -3,11 +3,11 @@
  */
 public class ActivationFunction {
 
-    public static double getLinearValue(double x){
+    public  double getLinearValue(double x){
         return  x;
     }
 
-    public static double getSigmoidValue(double x){
+    public  double getSigmoidValue(double x){
         return 1/(1+Math.exp(-x));
     }
 
@@ -15,7 +15,7 @@ public class ActivationFunction {
         return (1 - Math.pow(Math.tanh(value), 2));
     }
 
-    public static double getHyperThValue(double x){
+    public  double getHyperThValue(double x){
         return (Math.exp(2*x)-1)/(Math.exp(2*x)+1);
     }
 

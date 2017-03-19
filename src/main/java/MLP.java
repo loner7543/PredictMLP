@@ -3,7 +3,6 @@
  * по умолчанию использзовал сигмоиду
  */
 public class MLP {
-    private static final long serialVersionUID = 1L;
     private int inputCount;
     private double[] input;
     private double[] output;
@@ -44,7 +43,7 @@ public class MLP {
             // подаются на вход значения
 
             // считает значение на выходе
-            countOuter(input, false);
+            countOuter(input, true);
 
             // считается ошибка - разница между полученным на выходе и
             // ожидаемым
@@ -86,7 +85,7 @@ public class MLP {
                 hidden[i] += input[j] * inputToHidden[j][i];
             }
             // hidden[i] = (hidden[i] > 0.5) ? 1 : 0;
-            hidden[i] = ActivationFunction.getSigmoidValue(hidden[i]);
+            hidden[i] = activationFunction.getSigmoidValue(hidden[i]);
         }
 
         if (print)
@@ -98,7 +97,7 @@ public class MLP {
 
             }
             // output[i] = (output[i] > 0.5) ? 1 : 0;
-            output[i] =  ActivationFunction.getSigmoidValue(hidden[i]);
+            output[i] =  activationFunction.getSigmoidValue(hidden[i]);
             if (print) {
 
                 System.out.print(output[i] + " ");
